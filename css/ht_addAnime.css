@@ -1,0 +1,68 @@
+@import url("reset.css");
+@import url("base.css");
+.step {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    width: 800px;
+}
+
+.stepDiv01 {
+    position: relative;
+    top: 100px;
+    left: 30px;
+    width: 365px;
+}
+
+.stepDiv02 {
+    position: relative;
+    top: 100px;
+    left: 30px;
+    width: 1000px;
+}
+
+.stepDiv02 .step02Input {
+    width: 300px;
+}
+
+.stepDiv03 {
+    position: relative;
+    top: 100px;
+    left: 30px;
+}
+
+
+/* 确认上传框 */
+
+.nei {
+    position: relative;
+    width: 1200px;
+}
+
+.neiL img {
+    height: 200px;
+    width: 150px;
+}
+
+.nei .neiR {
+    /* border: solid 1px; */
+    height: 180px;
+    width: 800px;
+    position: absolute;
+    left: 200px;
+    bottom: 100px;
+    color: #6daddc;
+}
+
+.nei .neiR .text {
+    height: 120px;
+    width: 600px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.nei .neiR b {
+    color: #6daddc;
+    line-height: 30px;
+}

@@ -1,0 +1,239 @@
+@import url("reset.css");
+@import url("base.css");
+body {
+    background: #fff url('../img/c8_bg.jpg') no-repeat;
+    background-position-x: center;
+    font-size: 16px;
+}
+
+
+/* 下载app下拉框 */
+
+.downapp {
+    position: absolute;
+    top: 25px;
+    left: -65px;
+    box-shadow: 0 0 20px #00000080;
+}
+
+.downapp .transition-box {
+    width: 200px;
+    height: 220px;
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center;
+    color: #4A97CD;
+    box-sizing: border-box;
+}
+
+.downapp .transition-box img {
+    height: 160px;
+    width: 160px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+
+/* 登录框 */
+
+.logindiv,
+.rigisterdiv {
+    position: absolute;
+    top: 25px;
+    left: -65px;
+    box-shadow: 0 0 20px #00000080;
+}
+
+.logindiv .transition-box {
+    padding: 5px;
+    width: 200px;
+    height: 220px;
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center;
+    color: #4A97CD;
+    box-sizing: border-box;
+}
+
+.rigisterdiv .transition-box {
+    padding: 5px;
+    width: 200px;
+    height: 220px;
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center;
+    color: #4A97CD;
+    box-sizing: border-box;
+}
+
+#main {
+    padding-top: 32px;
+}
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 9;
+}
+
+.top-nav .w {
+    height: 32px;
+    padding: 8px 0;
+}
+
+.top-nav .w ul {
+    display: inline-block;
+}
+
+.top-nav .w ul li a {
+    color: rgb(29, 26, 26);
+    text-decoration: none;
+}
+
+.top-nav .w ul li {
+    position: relative;
+    padding-right: 15px;
+    margin-left: 15px;
+    border-right: 1px solid #ccc;
+}
+
+.top-nav .w ul li a:hover {
+    color: cornflowerblue;
+    cursor: pointer;
+}
+
+.top-nav .w ul.l li:first-child {
+    margin: 0;
+}
+
+.top-nav .w ul.l li:last-child {
+    padding: 0;
+    border: 0;
+}
+
+.top-nav .w ul.r li:first-child {
+    padding: 0;
+    border: 0;
+}
+
+
+/* 详情开始 */
+
+.about {
+    height: 390px;
+    margin-top: 30px;
+    background: linear-gradient(to bottom, #ffffff00 0%, #ffffff00 16%, white 16%, white 100%);
+    border-bottom: 1px solid #bbb;
+    box-shadow: 0 2px 0px 0 #ccc;
+}
+
+.about-img {
+    width: 100%;
+    text-align: right;
+}
+
+.about-img img {
+    height: 330px;
+    padding: 15px;
+    border: 1px solid #777;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #aaa;
+    margin-right: 20px;
+    background-color: #fff;
+}
+
+.about-message {
+    padding-top: 10px;
+    padding-right: 20px;
+}
+
+.about-message span {
+    color: #4A97CD;
+}
+
+.about-message p {
+    color: black;
+    margin: 10px 0;
+}
+
+.about-message p:nth-child(1) {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-message p:last-child {
+    text-indent: 20px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.comment {
+    background-color: #fff;
+    margin-top: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.comment-name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+
+/* 评论区 */
+
+.comment-text {
+    font-size: 16px;
+    color: #000;
+    letter-spacing: 3px;
+    line-height: 1.3;
+    margin: 5px 0;
+    background-color: #bbbbbb50;
+    padding: 15px 25px;
+    border-radius: 6px;
+}
+
+.comment-text-name {
+    color: #4A97CD;
+}
+
+.comment-text-to {
+    font-size: 14px;
+}
+
+.comment-text p {
+    margin: 5px 0;
+    text-indent: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.comment-text-xinxi {
+    color: #777;
+    font-size: 14px;
+}
+
+.comment-text-xinxi span {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.comment-text-xinxi span:last-child:hover {
+    background-color: #ccc;
+    cursor: pointer;
+    color: #4A97CD;
+}

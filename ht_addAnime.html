@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加动漫资讯</title>
+    <!-- 引入网页图标 -->
+    <link rel="shortcut icon" href="../img/c8icon.jpg" type="image/x-icon" />
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios包-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="js/cookieUtils.js"></script>
+
+    <script src="js/ht_addAnime.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ht_addAnime.css">
+
+</head>
+
+<body>
+    <div id="addAnime">
+
+        <div class="step">
+            <el-steps :active="active" finish-status="success">
+                <el-step title="上传动漫资讯图片"></el-step>
+                <el-step title="填写动漫资讯信息"></el-step>
+                <el-step title="确认上传"></el-step>
+            </el-steps>
+
+        </div>
+        <div class="stepDiv01" v-if="active==0">
+            <!-- 上传动漫图片 -->
+            <el-form>
+                <el-form-item label="" :label-width="formLabelWidth">
+                    <el-upload class="upload-demo" drag action="http://localhost:8899/mantan-content/content/uploadAnimeImg" name="animeImg" multiple>
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将图片拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip" style="color: red;">{{upAnimeResult.uploadedMsg}}</div>
+                    </el-upload>
+                </el-form-item>
+            </el-form>
+            <br>
+            <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+        </div>
+        <div class="stepDiv02" v-if="active==1">
+            <el-form>
+                <el-form-item label="动漫名称" :label-width="formLabelWidth">
+                    <div class="step02Input">
+                        <el-input v-model="animeInfo.name"></el-input>
+                    </div>
+                </el-form-item>
+                <el-form-item label="动漫作者" :label-width="formLabelWidth">
+                    <div class="step02Input">
+                        <el-input v-model="animeInfo.author"></el-input>
+                    </div>
+                </el-form-item>
+                <el-form-item label="上映时间" :label-width="formLabelWidth">
+                    <div class="block">
+                        <el-date-picker v-model="animeInfo.releasedate" type="date" placeholder="选择日期"> </el-date-picker>
+                    </div>
+                </el-form-item>
+                <el-form-item label="动漫简介" :label-width="formLabelWidth">
+                    <div class="step02Input">
+                        <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="animeInfo.desc"> </el-input>
+                    </div>
+
+                </el-form-item>
+            </el-form>
+            <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+        </div>
+        <div class="stepDiv03" v-if="active==2">
+            <div class="nei">
+                <div class="neiL"><img :src="animeInfo.animeImgsrc" alt=""></div>
+                <div>
+                    <div class="neiR">
+                        <div><b>动漫名称：</b> {{animeInfo.name}}</div>
+                        <div><b>动漫作者：</b> {{animeInfo.author}}</div>
+                        <div><b>上映时间：</b> {{animeInfo.releasedate.slice(0,10)}}</div>
+                        <div class="text"><b>剧情介绍：</b>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{animeInfo.desc}}</p>
+                        </div>
+                    </div>
+                    <br><br><br>
+                    <div class="neiBtn">
+                        <el-button size="min" type="primary" plain>确认无误</el-button>
+                        <el-button size="min" type="info" plain>重新上传</el-button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
