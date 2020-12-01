@@ -231,7 +231,7 @@ body {
     width: 140px;
 }
 
-.banner-r ul span:hover {
+.banner-r ul span a:hover {
     cursor: pointer;
     color: #4A97CD;
 }

@@ -172,7 +172,7 @@
                 <ul>
                     <li v-for="(item,index) in paiming">
                         <i :style="'background-image: url('+item.animeImgsrc+');'">{{index+1}}</i>
-                        <span @click="findAnimeInfo(item.id)">{{item.name}}</span>
+                        <span><a :href="'animeAbout.html?id='+item.id">{{item.name}}</a></span>
                     </li>
 
 
@@ -193,7 +193,9 @@
                         <i>{{item.name}}</i>
                         <br><br>
                         <span class="hot_num fl">热力值:{{item.hotNum}}</span>
-                        <el-button type="primary" class="fr" round @click="findAnimeById(item.id)">查看详情</el-button>
+                        <a :href="'animeAbout.html?id='+item.id">
+                            <el-button type="primary" class="fr" round> 查看详情 </el-button>
+                        </a>
                     </div>
                 </div>
 

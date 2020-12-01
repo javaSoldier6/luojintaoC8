@@ -15,13 +15,13 @@ window.onload = function() {
                 pageNum: 1,
             },
             animeList: [{
-                    // id: "0",
-                    // name: "anime",
-                    // animeImgsrc: "img/logo.png",
-                    // hotNum: 666,
-                    // desc: "",
-                    // author: "",
-                    // releasedate: ""
+                    // id: "0",                        动漫id
+                    // name: "anime",                  动漫名称
+                    // animeImgsrc: "img/logo.png",    动漫图片路径
+                    // hotNum: 666,                    热力值
+                    // desc: "",                       剧情简介
+                    // author: "",                     动漫作者
+                    // releasedate: ""                 上映时间
 
                 },
 

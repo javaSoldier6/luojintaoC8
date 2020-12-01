@@ -152,9 +152,6 @@ window.onload = function() {
                     that.paiming = response.data;
                 })
             },
-            findAnimeInfo: function(id) {
-                alert("要查看动漫详情的id是" + id);
-            },
             //请求动漫资讯以及搜索动漫资讯
             findAnimeListSerch: function() {
                 var that = this;
