@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C8漫坛后台中心</title>
+    <!-- 引入网页图标 -->
+    <link rel="shortcut icon" href="../img/c8icon.jpg" type="image/x-icon" />
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios包-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="js/cookieUtils.js"></script>
+
+    <script src="js/houtai_index.js"></script>
+    <link rel="stylesheet" href="css/houtai_index.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- 顶部导航栏 -->
+        <div class="head">
+            <div>
+                <b class="title"><a href="index.html"> <span class="el-icon-s-home" style="font-size: 35px;"></span></a><a>C8漫坛后台中心</a> </b>
+            </div>
+            <div class="fr">
+                <a href="javascript:void(0)">当前账号:{{user.username}}</a>
+            </div>
+        </div>
+
+
+        <div class="main">
+            <el-row>
+                <el-col :span="4">
+                    <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+                        <el-submenu index="1">
+                            <template slot="title">
+                                <i class="el-icon-s-custom"></i>
+                                <span>用户管理</span>
+                            </template>
+                            <el-menu-item-group>
+                                <el-menu-item index="1-1">用户信息</el-menu-item>
+                                <el-menu-item index="1-2">添加用户</el-menu-item>
+                                <el-menu-item index="1-3" v-if="this.user.roleid==1">添加管理员</el-menu-item>
+
+                            </el-menu-item-group>
+                        </el-submenu>
+                        <el-submenu index="2">
+                            <template slot="title">
+                                <i class="el-icon-cpu"></i>
+                                <span>网站前台管理</span>
+                            </template>
+                            <el-menu-item-group>
+                                <el-menu-item index="2-1" @click="toPage('ht_banner_list.html')">轮播图</el-menu-item>
+                                <el-menu-item index="2-2">动漫资讯</el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
+                        <el-submenu index="3">
+                            <template slot="title">
+                                <i class="el-icon-sell"></i>
+                                <span>动漫资讯管理</span>
+                            </template>
+                            <el-menu-item-group>
+                                <el-menu-item index="3-1" @click="toPage('ht_anime_list.html')">动漫资讯列表</el-menu-item>
+                                <el-menu-item index="3-2">添加动漫资讯</el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
+                    </el-menu>
+                </el-col>
+                <el-col :span="20">
+                    <div class="main-iframe">
+                        <iframe src="ht_ifrom_index.html" frameborder="0"></iframe>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+    </div>
+
+</body>
+
+</html>

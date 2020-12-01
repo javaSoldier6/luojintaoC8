@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动漫资讯</title>
+    <!-- 引入网页图标 -->
+    <link rel="shortcut icon" href="../img/c8icon.jpg" type="image/x-icon" />
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios包-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="js/cookieUtils.js"></script>
+
+    <script src="js/ht_anime_list.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ht_anime_list.css">
+
+</head>
+
+<body>
+    <div id="animeList">
+
+        <b style="color: #4A97CD;font-size: 24px;">动漫资讯列表</b><br>
+        <div class="search clearFix">
+            <div class="searchBtn fr">
+                <el-button slot="append" icon="el-icon-search" @click="searchDm"></el-button>
+            </div>
+            <div class="searchInput fr">
+                <el-input placeholder="请输入动漫名称搜索" v-model="search" clearable></el-input>
+
+            </div>
+
+        </div>
+
+        <!-- 列表内容 -->
+        <div class="tbody">
+            <b v-if="animeList.length==0" style="color: red;font-size: 20px;">还没有数据哦... <br><br></b>
+            <el-collapse accordion>
+                <el-collapse-item v-for="item in animeList" class="clearFix">
+                    <template slot="title">
+                <b class="titleName">{{item.name}}</b> 
+                </template>
+                    <div class="nei">
+                        <div class="neiL"><img :src="item.animeImgsrc" alt=""></div>
+                        <div>
+                            <div class="neiR">
+                                <div><b>动漫作者：</b> {{item.author}}</div>
+                                <div><b>上映时间：</b> {{item.releasedate}}</div>
+                                <div class="text"><b>剧情介绍：</b>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.desc}}</p>
+                                </div>
+                            </div>
+
+                            <div class="neiBtn">
+                                <el-button size="min" type="primary" plain>编辑</el-button><br><br>
+                                <el-button size="min" type="danger" plain>删除</el-button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </el-collapse-item>
+        </div><br><br>
+        <div class="pagination clearFix">
+            <el-pagination background layout="prev, pager, next" :total="this.pagination.total" @current-change="pageChange" :current-page="this.pagination.pageNum">
+            </el-pagination>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

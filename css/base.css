@@ -1,0 +1,35 @@
+body {
+    width: 100%;
+    background-color: #fff;
+}
+
+.clearFix {
+    clear: both;
+}
+
+.clearfix:after,
+.clearFix:before {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+div {
+    box-sizing: border-box;
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C8漫坛首页</title>
+    <!-- 引入网页图标 -->
+    <link rel="shortcut icon" href="../img/c8icon.jpg" type="image/x-icon" />
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios包-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="js/cookieUtils.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div id="main">
+
+        <div class="top-nav">
+            <div class="w">
+                <ul class="clearFix l">
+                    <li class="fl"><a href="javascript:void(0)">首页</a></li>
+                    <li class="fl"><a href="javascript:void(0)">漫友中心</a></li>
+                    <li class="fl" v-show="user.roleid<3"><a href="houtai_index.html">后台中心</a></li>
+                    <!-- <li class="fl"><a href="#" plain @click="open1">下载APP</a></li> -->
+                    <li class="fl"><a href="javascript:void(0)" @mouseover="show3=!show3" @mouseleave="show3=!show3">下载APP</a>
+
+                        <div class="downapp">
+                            <el-collapse-transition>
+                                <div v-show="show3">
+                                    <div class="transition-box">
+                                        <img src="img/app.jpg" />
+                                        <br>
+                                        <i>扫码添加作者微信<br>催促他快编写漫坛APP哦</i>
+                                    </div>
+
+                                </div>
+                            </el-collapse-transition>
+                        </div>
+                    </li>
+
+                </ul>
+                <ul class="fr clearFix r" v-if="loginSuccess==false">
+                    <li class="fr"><a href="javascript:void(0)" @click="showLogin=false;showRegister = !showRegister">注册</a>
+                        <!-- 注册弹框 -->
+                        <div class="rigisterdiv">
+                            <el-collapse-transition>
+                                <div v-show="showRegister">
+                                    <div class="transition-box">
+                                        <br> <b>用户注册</b><br><br>
+                                        <el-input placeholder="请输入用户名" v-model="user.username" clearable></el-input><br><br>
+                                        <el-input placeholder="请输入密码" v-model="user.password" show-password></el-input><br>
+                                        <span style="color: red;">{{registerMsg}}</span><br>
+                                        <el-button type="success" plain style="width: 100%;font-size: 10px;" @click="register">注册</el-button>
+                                    </div>
+
+                                </div>
+                            </el-collapse-transition>
+                        </div>
+
+                    </li>
+                    <li class="fr"><a href="javascript:void(0)" @click="showRegister=false;showLogin = !showLogin">登录</a>
+                        <!-- 登录弹框 -->
+                        <div class="logindiv">
+                            <el-collapse-transition>
+                                <div v-show="showLogin">
+                                    <div class="transition-box">
+                                        <br> <b>用户登录</b><br><br>
+                                        <el-input placeholder="请输入用户名" v-model="user.username" clearable></el-input><br><br>
+                                        <el-input placeholder="请输入密码" v-model="user.password" show-password></el-input><br>
+                                        <span style="color: red;">{{loginMsg}}</span><br>
+                                        <el-button type="primary" plain style="width: 100%;font-size: 10px;" @click="login">登录</el-button>
+                                    </div>
+
+                                </div>
+                            </el-collapse-transition>
+                        </div>
+                    </li>
+                </ul>
+
+
+
+
+                <!-- 用户角色模块 -->
+                <ul class="fr clearFix r" v-if="loginSuccess==true">
+                    <li class="fr">
+                        <!-- <span class='el-icon-user-solid'></span> -->
+                        <!-- <span class="el-icon-user"></span>
+                        <a href="javascript:void(0)">{{user.username}}</a> -->
+                        <el-dropdown>
+                            <span class="el-dropdown-link">
+                            <span class="el-icon-user"></span>
+                            <a href="javascript:void(0)">{{user.username}}</a>
+
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item icon="el-icon-loading">我的资料</el-dropdown-item>
+                                <el-dropdown-item icon=" el-icon-female">我的好友</el-dropdown-item>
+                                <el-dropdown-item icon="el-icon-circle-close"><span @click="loginout">退出登录</span></el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- 搜索框 -->
+
+        <div class="topTheme">
+            <div class="w">
+                <div class="logo">
+                    <img src="img/logo.png" alt="">
+                </div>
+
+                <div class="search">
+                    <el-input placeholder="请输入关键字" v-model="search" class="input-with-select" clearable>
+
+                        <el-button slot="append" icon="el-icon-search" @click=" findAnimeListSerch()"></el-button>
+
+                    </el-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav">
+            <div class="w">
+                <ul class="clearFix nav-ul">
+                    <li class="fl">
+                        首页
+                    </li>
+                    <li class="fl">
+                        校园
+                    </li>
+                    <li class="fl">
+                        战斗
+                    </li>
+                    <li class="fl">
+                        少女
+                    </li>
+                    <li class="fl">
+                        搞笑
+                    </li>
+                    <li class="fl">
+                        机甲
+                    </li>
+                    <li class="fl">
+                        魔法
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="banner w">
+            <div class="fl banner-l">
+                <el-carousel height="500px" :interval="2500">
+                    <el-carousel-item v-for="item in bannerList">
+                        <a :href="item.url" target="_blank"><img :src="item.src" alt=""></a>
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
+            <div class="fl banner-r">
+                <p>动漫热力榜</p>
+                <ul>
+                    <li v-for="(item,index) in paiming">
+                        <i :style="'background-image: url('+item.animeImgsrc+');'">{{index+1}}</i>
+                        <span @click="findAnimeInfo(item.id)">{{item.name}}</span>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <!--动漫资讯框 -->
+        <div class="c8_body w">
+            <p>动漫资讯</p>
+
+            <div class="body_main">
+                <div class="tishi" v-if="animeList.length==0"><b>未查询到动漫资讯....</b></div>
+                <div class="dm_news fl" v-for="item in animeList">
+                    <div class="dm_newsImg">
+                        <img :src="item.animeImgsrc">
+                    </div>
+                    <div class="dm_newsDesc">
+                        <i>{{item.name}}</i>
+                        <br><br>
+                        <span class="hot_num fl">热力值:{{item.hotNum}}</span>
+                        <el-button type="primary" class="fr" round @click="findAnimeById(item.id)">查看详情</el-button>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="pagination clearFix">
+                <el-pagination background layout="prev, pager, next" :total="pagination.total" @current-change="pageChange" :current-page="pagination.pageNum">
+                </el-pagination>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+    <!-- foot -->
+    <!--foot 开始-->
+
+</body>
+
+</html>
