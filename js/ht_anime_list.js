@@ -2,7 +2,7 @@ window.onload = function() {
     var app = new Vue({
         el: "#animeList",
         data: {
-            formLabelWidth: "", //上传图片组件离父div的左边距
+            // formLabelWidth: "", //上传图片组件离父div的左边距
             dialogVisible: false,
             animeInfo: {
                 animeid: "",
@@ -32,6 +32,11 @@ window.onload = function() {
 
         },
         methods: {
+            formatTime: function(dat) {
+                return dat.substring(0, 10)
+            },
+
+
             formLabelWidth: function() {},
             //动漫资讯编辑事件
             editAnime: function(animeInfo) {

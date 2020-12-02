@@ -24,6 +24,7 @@ window.onload = function() {
         },
         methods: {
 
+
             makeSure: function() {
                 this.active = 0;
             },
