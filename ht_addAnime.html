@@ -31,27 +31,13 @@
 
         <div class="step">
             <el-steps :active="active" finish-status="success">
+                <el-step title="填写动漫资讯信息 "></el-step>
                 <el-step title="上传动漫资讯图片"></el-step>
-                <el-step title="填写动漫资讯信息"></el-step>
                 <el-step title="确认上传"></el-step>
             </el-steps>
 
         </div>
         <div class="stepDiv01" v-if="active==0">
-            <!-- 上传动漫图片 -->
-            <el-form>
-                <el-form-item label="" :label-width="formLabelWidth">
-                    <el-upload class="upload-demo" drag action="http://localhost:8899/mantan-content/content/uploadAnimeImg" name="animeImg" multiple>
-                        <i class="el-icon-upload"></i>
-                        <div class="el-upload__text">将图片拖到此处，或<em>点击上传</em></div>
-                        <div class="el-upload__tip" slot="tip" style="color: red;">{{upAnimeResult.uploadedMsg}}</div>
-                    </el-upload>
-                </el-form-item>
-            </el-form>
-            <br>
-            <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
-        </div>
-        <div class="stepDiv02" v-if="active==1">
             <el-form>
                 <el-form-item label="动漫名称" :label-width="formLabelWidth">
                     <div class="step02Input">
@@ -77,6 +63,22 @@
             </el-form>
             <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
         </div>
+        <div class="stepDiv02" v-if="active==1">
+            <!-- 上传动漫图片 -->
+            <el-form>
+                <el-form-item label="" :label-width="formLabelWidth">
+                    <el-upload class="upload-demo" drag action="http://localhost:8899/mantan-content/content/addAnimeImgSrc" name="animeImg" multiple>
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将图片拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip" style="color: red;">{{upAnimeResult.uploadedMsg}}</div>
+                    </el-upload>
+                </el-form-item>
+            </el-form>
+            <br><br>
+            <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+
+
+        </div>
         <div class="stepDiv03" v-if="active==2">
             <div class="nei">
                 <div class="neiL"><img :src="animeInfo.animeImgsrc" alt=""></div>
@@ -91,8 +93,8 @@
                     </div>
                     <br><br><br>
                     <div class="neiBtn">
-                        <el-button size="min" type="primary" plain>确认无误</el-button>
-                        <el-button size="min" type="info" plain>重新上传</el-button>
+                        <el-button size="min" type="primary" @click="makeSure" plain>确认无误</el-button>
+                        <el-button size="min" type="info" plain @click="next">重新上传</el-button>
                     </div>
                 </div>
 

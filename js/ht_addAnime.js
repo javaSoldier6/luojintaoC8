@@ -13,7 +13,7 @@ window.onload = function() {
             animeInfo: {
                 id: "",
                 name: "",
-                animeImgsrc: "http://127.0.0.1:9000/imgfile/anime/20201127/zjdcts.webp",
+                animeImgsrc: "",
                 //animeid: "",
                 author: "",
                 releasedate: "",
@@ -23,21 +23,54 @@ window.onload = function() {
 
         },
         methods: {
+
+            makeSure: function() {
+                this.active = 0;
+            },
             next: function() {
                 if (this.active == 0) {
-                    //上传完图片之后点击的下一步
-                    var that = this;
-                    axios.get("http://localhost:8899/mantan-content/content/findAnimeid").then(function(response) {
-                        //console.log(response.data)
-                        that.upAnimeResult.upAnimeId = response.data.upAnimeId;
-                    })
+                    // //上传完图片之后点击的下一步
+                    // var that = this;
+                    // axios.get("http://localhost:8899/mantan-content/content/findAnimeid").then(function(response) {
+                    //     //console.log(response.data)
+                    //     that.upAnimeResult.upAnimeId = response.data.upAnimeId;
+                    // })
+                    if (this.animeInfo.name != "" && this.animeInfo.author != "") {
+                        var that = this;
+                        axios.post("http://localhost:8899/mantan-content/content/uploadAnimeZong", this.animeInfo)
+                            .then(function(response) {
+                                //console.log(response.data)
+                                that.upAnimeResult.upAnimeId = response.data.upAnimeId;
+                                if (that.upAnimeResult.upAnimeId != "") {
+                                    that.active++
+                                }
+                            })
+                    }
+
 
                 }
-                if (this.active < 2) {
-                    this.active++;
-                } else {
-                    this.active = 0;
+                if (this.active == 1) {
+                    var that = this;
+                    axios.get("http://localhost:8899/mantan-content/content/findLastAnime/" + this.upAnimeResult.upAnimeId)
+                        .then(function(response) {
+                            //console.log(response.data)
+                            that.animeInfo = response.data;
+                            if (that.animeInfo.animeImgsrc != "") {
+                                that.active++
+                            }
+                        })
+
                 }
+                if (this.active == 2) {
+                    var that = this;
+                    axios.get("http://localhost:8899/mantan-content/content/deleteLastAnime/" + this.upAnimeResult.upAnimeId)
+                        .then(function(response) {
+                            that.active = 0;
+                        })
+
+
+                }
+
 
             },
 

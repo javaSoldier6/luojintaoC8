@@ -2,6 +2,8 @@ window.onload = function() {
     var app = new Vue({
         el: "#animeList",
         data: {
+            formLabelWidth: "", //上传图片组件离父div的左边距
+            dialogVisible: false,
             animeInfo: {
                 animeid: "",
                 author: "",
@@ -30,27 +32,36 @@ window.onload = function() {
 
         },
         methods: {
-            //格式化时间
-            formatTime: function(date, fmt) {
-                var date = new Date(date);
-                if (/(y+)/.test(fmt)) {
-                    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-                }
-                var o = {
-                    'M+': date.getMonth() + 1,
-                    'd+': date.getDate(),
-                    'h+': date.getHours(),
-                    'm+': date.getMinutes(),
-                    's+': date.getSeconds()
-                };
-                for (var k in o) {
-                    if (new RegExp('(' + k + ')').test(fmt)) {
-                        var str = o[k] + '';
-                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : ('00' + str).substr(str.length));
-                    }
-                }
-                return fmt;
+            formLabelWidth: function() {},
+            //动漫资讯编辑事件
+            editAnime: function(animeInfo) {
+
+                this.animeInfo.id = animeInfo.id;
+                this.animeInfo.name = animeInfo.name;
+                this.animeInfo.author = animeInfo.author;
+                this.animeInfo.desc = animeInfo.desc;
+                this.animeInfo.releasedate = animeInfo.releasedate;
+                this.dialogVisible = true;
+
             },
+            handleClose: function(done) {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
+            },
+            //发送ajax请求修改动漫总信息
+            updateAnimeZong: function() {
+                var that = this;
+                axios.post("http://localhost:8899/mantan-content/content/updateAnimeZong", this.animeInfo)
+                    .then(function(response) {
+                        that.findAnimeListSerch();
+                        that.dialogVisible = false
+                    })
+
+            },
+
 
             //搜索按钮绑定事件
             searchDm: function() {
@@ -89,6 +100,17 @@ window.onload = function() {
                 this.animeInfo.desc = info.desc;
                 this.afterInfo = true;
                 this.beforeInfo = !this.afterInfo;
+
+            },
+            deleteAnime: function(id) {
+                var that = this;
+                if (confirm("确定要删除该动漫资讯吗？")) {
+                    axios.get("http://localhost:8899/mantan-content/content/deleteLastAnime/" + id)
+                        .then(function(response) {
+                            that.findAnimeListSerch();
+                        })
+
+                }
 
             }
 

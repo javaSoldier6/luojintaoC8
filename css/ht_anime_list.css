@@ -1,9 +1,5 @@
 @import url("reset.css");
 @import url("base.css");
-#animeList {
-    /* width: 1200px; */
-}
-
 .search {
     /* background-color: royalblue; */
     height: 50px;

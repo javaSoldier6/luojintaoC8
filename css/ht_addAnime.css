@@ -7,21 +7,21 @@
     width: 800px;
 }
 
-.stepDiv01 {
+.stepDiv02 {
     position: relative;
     top: 100px;
     left: 30px;
     width: 365px;
 }
 
-.stepDiv02 {
+.stepDiv01 {
     position: relative;
     top: 100px;
     left: 30px;
     width: 1000px;
 }
 
-.stepDiv02 .step02Input {
+.stepDiv01 .step01Input {
     width: 300px;
 }
 
