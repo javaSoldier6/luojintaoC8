@@ -31,22 +31,22 @@
         <!-- 编辑弹框 -->
         <el-dialog title="编辑动漫资讯" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
             <el-form>
-                <el-form-item label="动漫名称" :label-width="formLabelWidth">
+                <el-form-item label="动漫名称">
 
                     <el-input v-model="animeInfo.name"></el-input>
 
                 </el-form-item>
-                <el-form-item label="动漫作者" :label-width="formLabelWidth">
+                <el-form-item label="动漫作者">
 
                     <el-input v-model="animeInfo.author"></el-input>
 
                 </el-form-item>
-                <el-form-item label="上映时间" :label-width="formLabelWidth">
+                <el-form-item label="上映时间">
 
                     <el-date-picker v-model="animeInfo.releasedate" type="date" placeholder="选择日期"> </el-date-picker>
 
                 </el-form-item>
-                <el-form-item label="动漫简介" :label-width="formLabelWidth">
+                <el-form-item label="动漫简介">
 
                     <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="animeInfo.desc"> </el-input>
 
@@ -81,14 +81,14 @@
             <el-collapse accordion>
                 <el-collapse-item v-for="item in animeList" class="clearFix">
                     <template slot="title">
-                <b class="titleName">{{item.name}}</b> 
+                 <b class="titleName">{{item.name}}</b> 
                 </template>
                     <div class="nei">
                         <div class="neiL"><img :src="item.animeImgsrc" alt=""></div>
                         <div>
                             <div class="neiR">
                                 <div><b>动漫作者：</b> {{item.author}}</div>
-                                <div><b>上映时间：</b> {{formatTime(item.releasedate)}}</div>
+                                <div><b>上映时间：</b> {{ item.releasedate.slice(0,10)}}</div>
                                 <div class="text"><b>剧情介绍：</b>
                                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.desc}}</p>
                                 </div>

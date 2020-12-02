@@ -17,6 +17,16 @@ window.onload = function() {
                 password: "",
                 roleid: 3
             },
+            animeInfo: {
+                id: "",
+                name: "",
+                animeImgsrc: "",
+                //animeid: "",
+                author: "",
+                releasedate: "",
+                desc: ""
+            },
+
             comments: [{
                     id: "", //数据id
                     uname: "大哥", // 用户名
@@ -209,6 +219,16 @@ window.onload = function() {
                 } else {
                     return null
                 }
+            },
+            //通过id查找动漫信息
+            findAnimeById: function(id) {
+                var that = this;
+                axios.get("http://localhost:8899/mantan-content/content/findAnimeZongByAnimeId/" + id).then(function(response) {
+                    //console.log(response.data)
+                    that.animeInfo = response.data;
+                    console.log(that.animeInfo);
+
+                })
             }
 
 
@@ -230,6 +250,10 @@ window.onload = function() {
                 //登录状态设为true
                 this.loginSuccess = true;
             }
+            var animeId = window.location.search.split("=")[1];
+            this.findAnimeById(animeId);
+
+
 
 
 

@@ -124,18 +124,18 @@
             <el-row :gutter="40">
                 <el-col :span="8">
                     <div class="about-img">
-                        <img src="http://127.0.0.1:9000/imgfile/anime/20201127/zjdcts.webp" alt="">
+                        <img :src="animeInfo.animeImgsrc" alt="">
                     </div>
                 </el-col>
                 <el-col :span="16">
                     <div class="about-message">
-                        <p>名字</p>
-                        <p>作者：<span>111</span></p>
-                        <p>时间：<span>111</span></p>
-                        <p>热力值：<span>111</span></p>
+                        <p>{{animeInfo.name}}</p>
+                        <p>作者：<span>{{animeInfo.author}}</span></p>
+                        <p>时间：<span>{{animeInfo.releasedate.slice(0,10)}}</p>
+                        <p>热力值：<span>{{animeInfo.hotNum}}</span></p>
                         <hr>
                         <p>简介：</p>
-                        <p><span> 简介简介简介简介简介简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：简介：</span></p>
+                        <p><span> {{animeInfo.desc}}</span></p>
                     </div>
                 </el-col>
             </el-row>

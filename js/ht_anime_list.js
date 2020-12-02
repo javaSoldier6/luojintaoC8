@@ -23,7 +23,7 @@ window.onload = function() {
                     // hotNum: 666,                    热力值
                     // desc: "",                       剧情简介
                     // author: "",                     动漫作者
-                    // releasedate: ""                 上映时间
+                    releasedate: "" // 上映时间
 
                 },
 
@@ -32,9 +32,6 @@ window.onload = function() {
 
         },
         methods: {
-            formatTime: function(dat) {
-                return dat.substring(0, 10)
-            },
 
 
             formLabelWidth: function() {},

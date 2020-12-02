@@ -52,7 +52,7 @@ window.onload = function() {
                 }
                 if (this.active == 1) {
                     var that = this;
-                    axios.get("http://localhost:8899/mantan-content/content/findLastAnime/" + this.upAnimeResult.upAnimeId)
+                    axios.get("http://localhost:8899/mantan-content/content/findAnimeZongByAnimeId/" + this.upAnimeResult.upAnimeId)
                         .then(function(response) {
                             //console.log(response.data)
                             that.animeInfo = response.data;
