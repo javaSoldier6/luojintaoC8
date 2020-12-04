@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加动漫资讯</title>
+    <!-- 引入网页图标 -->
+    <link rel="shortcut icon" href="../img/c8icon.jpg" type="image/x-icon" />
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--axios包-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="js/cookieUtils.js"></script>
+
+    <script src="js/ht_addUser.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ht_addUser.css">
+
+</head>
+
+<body>
+    <div id="addAnime">
+
+        <div class="step">
+            <el-steps :active="this.active" finish-status="success">
+                <el-step title="填写用户名密码 "></el-step>
+                <el-step title="填写用户具体信息"></el-step>
+                <el-step title="确认添加"></el-step>
+                <el-step title="完成添加"></el-step>
+            </el-steps>
+
+        </div>
+        <div class="stepDiv01" v-if="active==0">
+            用户角色：
+            <el-select v-if="loginUser.roleid==1" v-model="userZong.roleid" slot="prepend" placeholder="请选择">
+                <el-option label="超级管理员" value="1"></el-option>
+                <el-option label="管理员" value="2"></el-option>
+                <el-option label="普通用户" value="3"></el-option>
+            </el-select>
+            <el-divider></el-divider>
+            <el-form>
+                <el-form-item label="用户名">
+                    <div class="step01Input">
+                        <el-input v-model="userZong.username">
+                    </div>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <div class="step01Input">
+                        <el-input v-model="userZong.password"></el-input>
+                    </div>
+                </el-form-item>
+                </el-form-item>
+            </el-form>
+            <el-button type="primary" style="margin-top: 12px;" @click="next">下一步</el-button>
+            </el-input><span v-if="this.usernameIsExits" style="color: red;">该用户名已存在</span>
+        </div>
+        <div class="stepDiv02" v-if="active==1">
+            <!-- 填写具体信息 -->
+            性别：
+            <el-select v-model="userZong.sex" slot="prepend" placeholder="请选择">
+                <el-option label="男" value="男"></el-option>
+                <el-option label="女" value="女"></el-option>
+            </el-select>
+            <el-divider></el-divider>
+            <el-form>
+                <el-form-item label="真实姓名：">
+                    <el-input v-model="userZong.realName"></el-input>
+                </el-form-item>
+                <el-form-item label="生日：">
+                    <el-date-picker v-model="userZong.birthday" type="date" placeholder="选择日期">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="地址：">
+                    <el-input v-model="userZong.address"></el-input>
+                </el-form-item>
+                <el-form-item label="电话：">
+                    <el-input v-model="userZong.phone"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱：">
+                    <el-input v-model="userZong.emil"></el-input>
+                </el-form-item>
+                <el-form-item label="爱好：">
+                    <el-input type="textarea" v-model="userZong.hoppy"></el-input>
+                </el-form-item>
+
+            </el-form>
+
+            <el-button type="primary" style="margin-top: 12px;" @click="next1">下一步</el-button>
+
+
+        </div>
+        <div class="stepDiv03" v-if="active==2">
+            <div class="nei">
+                用户角色：{{showRole(userZong.roleid)}} &nbsp;&nbsp;&nbsp; 用户名：{{userZong.username}}&nbsp;&nbsp;&nbsp; 密码：{{userZong.password}}
+                <el-divider></el-divider>
+                真实姓名：{{userZong.realName}} &nbsp;&nbsp; 性别：{{userZong.sex}}
+                <el-divider></el-divider>
+                生日：
+                <el-date-picker v-model="userZong.birthday" :readonly="true" type="date" placeholder="选择日期"> </el-date-picker>
+                <el-divider></el-divider>
+                地址：{{userZong.address}}
+                <el-divider></el-divider>
+                电话：{{userZong.phone}}&nbsp;&nbsp;&nbsp;&nbsp; 邮箱：{{userZong.emil}}
+
+                <el-divider></el-divider>
+                爱好：{{userZong.hoppy}}
+
+
+            </div>
+            <div class="neiBtn"><br>
+                <el-button size="min" type="primary" @click="makeSure" plain>确认无误</el-button>
+                <el-button size="min" type="info" plain @click="next2">重新添加</el-button>
+            </div>
+        </div>
+        <div class="stepDiv04" v-if="active==3">
+            <b class="el-icon-circle-check"></b> <br><br>
+            <div class="btn">
+                <el-button type="primary" style="margin-top: 12px;" @click="nextSusess">继续添加</el-button>
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>

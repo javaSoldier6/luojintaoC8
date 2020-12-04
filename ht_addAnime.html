@@ -34,6 +34,7 @@
                 <el-step title="填写动漫资讯信息 "></el-step>
                 <el-step title="上传动漫资讯图片"></el-step>
                 <el-step title="确认上传"></el-step>
+                <el-step title="完成上传"></el-step>
             </el-steps>
 
         </div>
@@ -100,6 +101,13 @@
 
 
             </div>
+        </div>
+        <div class="stepDiv04" v-if="active==3">
+            <b class="el-icon-circle-check"></b> <br><br>
+            <div class="btn">
+                <el-button style="margin-top: 12px;" @click="next">继续上传</el-button>
+            </div>
+
         </div>
 
 

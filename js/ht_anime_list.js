@@ -5,6 +5,7 @@ window.onload = function() {
             // formLabelWidth: "", //上传图片组件离父div的左边距
             dialogVisible: false,
             animeInfo: {
+                name: "",
                 animeid: "",
                 author: "",
                 releasedate: "",

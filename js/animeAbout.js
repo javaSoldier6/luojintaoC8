@@ -223,7 +223,7 @@ window.onload = function() {
             //通过id查找动漫信息
             findAnimeById: function(id) {
                 var that = this;
-                axios.get("http://localhost:8899/mantan-content/content/findAnimeZongByAnimeId/" + id).then(function(response) {
+                axios.get("http://localhost:8899/mantan-content/content/findAnimeAboutByAnimeId/" + id).then(function(response) {
                     //console.log(response.data)
                     that.animeInfo = response.data;
                     console.log(that.animeInfo);

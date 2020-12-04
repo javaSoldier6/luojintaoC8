@@ -26,7 +26,7 @@ window.onload = function() {
 
 
             makeSure: function() {
-                this.active = 0;
+                this.active++;
             },
             next: function() {
                 if (this.active == 0) {
@@ -36,7 +36,7 @@ window.onload = function() {
                     //     //console.log(response.data)
                     //     that.upAnimeResult.upAnimeId = response.data.upAnimeId;
                     // })
-                    if (this.animeInfo.name != "" && this.animeInfo.author != "") {
+                    if (this.animeInfo.name != "" && this.animeInfo.author != "" && this.animeInfo.releasedate != null && this.animeInfo.releasedate != "") {
                         var that = this;
                         axios.post("http://localhost:8899/mantan-content/content/uploadAnimeZong", this.animeInfo)
                             .then(function(response) {
@@ -56,9 +56,14 @@ window.onload = function() {
                         .then(function(response) {
                             //console.log(response.data)
                             that.animeInfo = response.data;
-                            if (that.animeInfo.animeImgsrc != "") {
-                                that.active++
+                            if (that.animeInfo.animeImgsrc != "" && response.data.animeImgsrc != "" && response.data.animeImgsrc != null) {
+                                that.upAnimeResult.uploadedMsg = "";
+                                that.active++;
+                            } else {
+                                that.upAnimeResult.uploadedMsg = "图片太大，请重新上传图片";
                             }
+                        }, function(err) {
+                            that.upAnimeResult.uploadedMsg = "请求失败";
                         })
 
                 }
@@ -66,12 +71,22 @@ window.onload = function() {
                     var that = this;
                     axios.get("http://localhost:8899/mantan-content/content/deleteLastAnime/" + this.upAnimeResult.upAnimeId)
                         .then(function(response) {
-                            that.active = 0;
+                            that.active++;
                         })
 
 
                 }
+                if (this.active == 3) {
 
+                    this.animeInfo.id = "";
+                    this.animeInfo.name = "";
+                    this.animeInfo.animeImgsrc = "";
+                    this.animeInfo.author = "";
+                    this.animeInfo.releasedate = "";
+                    this.animeInfo.desc = "";
+
+                    this.active = 0;
+                }
 
             },
 

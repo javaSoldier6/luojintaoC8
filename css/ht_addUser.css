@@ -9,14 +9,15 @@
 
 .stepDiv02 {
     position: relative;
-    top: 100px;
+    top: 50px;
     left: 30px;
     width: 365px;
+    margin-bottom: 10px;
 }
 
 .stepDiv01 {
     position: relative;
-    top: 100px;
+    top: 50px;
     left: 30px;
     width: 800px;
 }
@@ -36,35 +37,7 @@
 
 .nei {
     position: relative;
-    width: 1200px;
-}
-
-.neiL img {
-    height: 200px;
-    width: 150px;
-}
-
-.nei .neiR {
-    /* border: solid 1px; */
-    height: 180px;
     width: 800px;
-    position: absolute;
-    left: 200px;
-    bottom: 100px;
-    color: #6daddc;
-}
-
-.nei .neiR .text {
-    height: 120px;
-    width: 600px;
-    word-wrap: break-word;
-    word-break: break-all;
-    overflow: hidden;
-}
-
-.nei .neiR b {
-    color: #6daddc;
-    line-height: 30px;
 }
 
 .stepDiv04 {

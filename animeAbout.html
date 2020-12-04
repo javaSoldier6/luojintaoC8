@@ -27,7 +27,7 @@
         <div class="top-nav">
             <div class="w">
                 <ul class="clearFix l">
-                    <li class="fl"><a href="javascript:void(0)">首页</a></li>
+                    <li class="fl"><a href="index.html">首页</a></li>
                     <li class="fl"><a href="javascript:void(0)">漫友中心</a></li>
                     <li class="fl" v-show="user.roleid<3"><a href="houtai_index.html">后台中心</a></li>
                     <!-- <li class="fl"><a href="#" plain @click="open1">下载APP</a></li> -->
@@ -130,8 +130,8 @@
                 <el-col :span="16">
                     <div class="about-message">
                         <p>{{animeInfo.name}}</p>
-                        <p>作者：<span>{{animeInfo.author}}</span></p>
-                        <p>时间：<span>{{animeInfo.releasedate.slice(0,10)}}</p>
+                        <p>动漫作者：<span>{{animeInfo.author}}</span></p>
+                        <p>上映时间：<span>{{animeInfo.releasedate.slice(0,10)}}</p>
                         <p>热力值：<span>{{animeInfo.hotNum}}</span></p>
                         <hr>
                         <p>简介：</p>
