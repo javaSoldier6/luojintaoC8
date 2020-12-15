@@ -274,7 +274,7 @@ body {
     margin: 10px 0 20px 20px;
     padding: 10px;
     width: 18%;
-    height: 300px;
+    height: 350px;
     border-radius: 4px;
     /* background-color: #4A97CD; */
     background-color: hsl(0, 0%, 96%);
@@ -311,7 +311,7 @@ body {
 /* 单个动漫资讯框样式 */
 
 .dm_newsImg {
-    height: 200px;
+    height: 250px;
 }
 
 .dm_newsImg img {

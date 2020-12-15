@@ -10,44 +10,42 @@ window.onload = function() {
             registerMsg: "",
             loginSuccess: false,
             show3: false,
-            search: "",
-            msg: "",
 
+            postInput: false,
+            postItemInput: false,
+            editInfo: false,
             user: {
+                id: 0,
+                username: "",
+                password: "",
+                roleid: 3
+            },
+            userZong: {
                 id: "",
                 username: "",
                 password: "",
-                roleid: 3,
+                roleid: "",
+                realName: "",
+                birthday: "",
+                sex: "",
+                address: "",
+                phone: "",
+                emil: "",
+                hoppy: "",
             },
-            bannerList: [{
+            postInfo: {
                 id: "",
-                src: "img/logo.png",
-                url: "https://www.bilibili.com/",
-            }],
-            // paiming: [{
-            //     id: 0,
-            //     name: "",
-            //     animeImgsrc: "",
-            //     hotNum: 0
+                postContext: "",
+                postId: "",
+                floor: "",
+                fromUid: "",
+                fromUname: "",
+                toUid: "",
+                toUname: "",
+                postTime: "",
 
-            // }],
-            paiming: [],
-            pagination: {
-                total: 10,
-                pageSize: 10,
-                pageNum: 1,
             },
-
-            animeList: [{
-                id: "0",
-                name: "anime",
-                animeImgsrc: "img/logo.png",
-                hotNum: 666
-
-            }]
-
-
-
+            postList: [],
 
         },
         methods: {
@@ -62,20 +60,7 @@ window.onload = function() {
                     message: h('i', { style: 'color: teal' }, msg)
                 });
             },
-            //搜索按钮绑定事件
-            searchDm: function() {
-                findAnimeListSerch(this.pagination.pageNum);
-            },
-            findAnimeById: function(animeId) {
-                alert("查看详情的动漫资讯id是：" + animeId)
-            },
-            //页码改变事件
-            pageChange: function(newPageNum) {
-                console.log(newPageNum);
-                this.pagination.pageNum = newPageNum;
-                this.findAnimeListSerch();
 
-            },
             //登录
             login: function() {
                 if (this.user.username == "" || this.user.password == "") {
@@ -136,35 +121,7 @@ window.onload = function() {
                     })
 
             },
-            //请求轮播图信息
-            findBannerList: function() {
-                var that = this;
-                axios.get(this.baseUrl + "/content/findBannerList").then(function(response) {
-                    //console.log(response.data)
-                    that.bannerList = response.data;
-                })
-            },
-            //请求动漫热力榜信息
-            findAnimePaiHang: function() {
-                var that = this;
-                axios.get(this.baseUrl + "/content/findAnimePaiHang").then(function(response) {
-                    //console.log(response.data)
-                    that.paiming = response.data;
-                })
-            },
-            //请求动漫资讯以及搜索动漫资讯
-            findAnimeListSerch: function() {
-                var that = this;
-                var keyword = "空";
-                if (this.search != "") {
-                    keyword = this.search;
-                }
-                axios.get(this.baseUrl + "/content/findAinimeByPageAndSearch/" + this.pagination.pageNum + "/" + keyword).then(function(response) {
-                    //console.log(response.data)
-                    that.pagination.total = response.data.total;
-                    that.animeList = response.data.result;
-                })
-            },
+
             loginout: function() {
 
                 //获取cookie信息
@@ -184,6 +141,18 @@ window.onload = function() {
                     //登录状态设为false
                     this.loginSuccess = false;
                 }
+            },
+
+
+            //通过id查找用户信息
+            findAnimeById: function(id) {
+                var that = this;
+                axios.get("http://localhost:8899/mantan-content/content/findAnimeAboutByAnimeId/" + id).then(function(response) {
+                    //console.log(response.data)
+                    that.animeInfo = response.data;
+                    console.log(that.animeInfo);
+
+                })
             }
 
 
@@ -205,12 +174,11 @@ window.onload = function() {
                 //登录状态设为true
                 this.loginSuccess = true;
             }
-            //加载轮播图
-            this.findBannerList();
-            //加载动漫热力榜
-            this.findAnimePaiHang();
-            //加载动漫资讯
-            this.findAnimeListSerch();
+            var animeId = window.location.search.split("=")[1];
+            //this.findAnimeById(animeId);
+
+
+
 
 
         },
@@ -219,12 +187,6 @@ window.onload = function() {
         },
 
         watch: {
-            // pagination: {
-            //     pageNum(newNum) {
-            //         //console.log(pageNum);
-            //         this.findAnimeListSerch(pageNum);
-            //     }
-            // }
 
         }
 

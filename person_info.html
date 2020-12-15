@@ -17,8 +17,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="js/cookieUtils.js"></script>
-    <script src="js/animeAbout.js"></script>
-    <link rel="stylesheet" href="css/animeAbout.css">
+    <script src="js/person_info.js"></script>
+    <link rel="stylesheet" href="css/person_info.css">
 </head>
 
 <body>
@@ -123,52 +123,149 @@
         <div class="about w">
             <el-row :gutter="40">
                 <el-col :span="8">
+
                     <div class="about-img">
-                        <img :src="animeInfo.animeImgsrc" alt="">
-                    </div>
+                        <img src="img/banner4.jpg" alt="">
+                    </div><br><br>
+                    <div class="uname"><b>admin</b><span @click="editInfo=true" class="el-icon-edit"></span></div>
                 </el-col>
                 <el-col :span="16">
+
                     <div class="about-message">
-                        <p>{{animeInfo.name}}</p>
-                        <p>动漫作者：<span>{{animeInfo.author}}</span></p>
-                        <p>上映时间：<span>{{animeInfo.releasedate.slice(0,10)}}</p>
-                        <p>热力值：<span>{{animeInfo.hotNum}}</span></p>
+                        <p>真实姓名：<span>罗锦涛</span></p>
+                        <p>性别：<span>男</span>&nbsp;&nbsp;&nbsp;生日：<span>1997-05-27</span> </p>
+                        <p>邮箱：<span>2690677125@qq.com</span>&nbsp;&nbsp;&nbsp;电话：<span>18270605540</span></p>
+                        <p>地址：<span>江西省宜春市高安市赤土板路</span></p>
                         <hr>
-                        <p>简介：</p>
-                        <p><span> {{animeInfo.desc}}</span></p>
+                        <p>爱好：</p>
+                        <p><span>宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍
+                            宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍
+                            宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍
+                            宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍
+                            宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍宿舍
+                        </span></p>
                     </div>
                 </el-col>
             </el-row>
         </div>
+        <div class="edit w" v-if="editInfo">
+            <div class="comment-name">
+                编辑资料
 
+            </div>
+            <hr>
+
+            <div>
+                <!-- <br>
+                <el-row :gutter="60">
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="userZong.username">
+                            <template slot="prepend"> 用户名</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="userZong.password">
+                            <template slot="prepend"> 密码</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="userZong.realName">
+                            <template slot="prepend"> 真实姓名</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-select v-model="userZong.sex" clearable placeholder="请选择性别">
+                            <el-option v-for="item in ['男','女']" :key="item" :label="item.label" :value="item">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+                <br>
+
+                <el-row :gutter="60">
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="userZong.phone">
+                            <template slot="prepend"> 电话</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="请输入内容" v-model="userZong.emil">
+                            <template slot="prepend"> 邮箱</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="10">
+                        <el-input placeholder="请输入内容" v-model="userZong.address">
+                            <template slot="prepend"> 地址</template>
+                        </el-input>
+                    </el-col>
+
+                </el-row>
+
+                <br>
+                <el-row :gutter="60">
+                    <el-col :span="6">
+                        <div>
+
+                            <el-date-picker prefix-icon="el-icon-present" v-model="userZong.birthday" type="date" placeholder="出生日期">
+                            </el-date-picker>
+                        </div>
+                    </el-col>
+
+                    <el-col :span="12">
+                        <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入爱好" v-model="userZong.hoppy">
+                        </el-input>
+
+                    </el-col>
+                </el-row>
+
+
+
+
+
+
+
+                <br> -->
+
+            </div>
+
+            <br><br><br>
+        </div>
 
         <div class="comment w">
             <div class="comment-name">
-                相关评论
+                相关发帖
             </div>
             <hr>
-            <div class="comment-text" v-for="(item,index) in big()">
-                <i class="el-icon-user-solid"></i>
-                <span class="comment-text-name">{{item.uname}}</span>
+            <div class="comment-text">
+                <i class="el-icon-tickets"></i>
+                <!-- <span class="comment-text-name">{{item.uname}}</span> -->
                 <!-- <span class="comment-text-to">@某某某</span> -->
-                <p>{{item.answercontext}}</p>
+                <p>我的第一条帖子</p>
                 <div class="comment-text-xinxi clearfix">
-                    <span class="fl">时间：{{item.answertime}}</span>
-                    <span class="fr">回复</span>
+                    <span class="fl">时间：2020-12-06 15:49:33</span>
+                    <span class="fr" @click="postInput=!postInput">回复</span>
                 </div>
 
                 <!-- 子评论开始 -->
-                <div class="comment-text" v-for="(item2,index2) in small(index+1)">
+                <div class="comment-text">
                     <i class="el-icon-user-solid"></i>
-                    <span class="comment-text-name">{{item2.uname}}</span>
-                    <span class="comment-text-to" v-if="showName(item2)">回复：{{showName(item2)}}</span>
-                    <p>{{item2.answercontext}}</p>
+                    <span class="comment-text-name">张三</span>
+                    <p>第一条回复</p>
                     <div class="comment-text-xinxi clearfix">
-                        <span class="fl">时间：{{item2.answertime}}</span>
-                        <span class="fr">回复</span>
+                        <span class="fl">时间：2020-12-06 15:49:33</span>
+                        <span class="fr" @click="postItemInput=!postItemInput">回复</span>
                     </div>
+                    <!-- 回复输入框 -->
+                    <el-input v-if="postItemInput" placeholder="请输入内容" v-model="postInfo.postContext">
+                        <el-button slot="append" icon="el-icon-s-promotion"></el-button>
+                    </el-input>
                 </div>
                 <!-- 子评论结束 -->
+                <!-- 回复输入框 -->
+                <el-input v-if="postInput" placeholder="请输入内容" v-model="postInfo.postContext">
+                    <el-button slot="append" icon="el-icon-s-promotion"></el-button>
+                </el-input>
+
             </div>
         </div>
 
